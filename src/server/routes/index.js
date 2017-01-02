@@ -5,7 +5,7 @@ const indexController = require('../controllers/index');
 
 router.get('/', function (req, res, next) {
   const renderObject = {};
-  renderObject.title = 'Welcome to Express!';
+  renderObject.title = 'Welcome to SpaceGoat!';
   indexController.sum(1, 2, (error, results) => {
     if (error) return next(error);
     if (results) {

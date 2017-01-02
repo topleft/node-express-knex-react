@@ -1,0 +1,48 @@
+{% extends "_base.html" %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+
+  <div class="container">
+    <div class="col-xs-4">
+      <h2>Register</h2>
+      <form class="form" action="/register" method="post">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input class="form-control" type="text" name="email" value="">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input class="form-control" type="text" name="password" value="">
+        </div>
+        <div class="form-group">
+          <label for="password_confirm">Confirm Password</label>
+          <input class="form-control" type="text" name="password_confirm" value="">
+        </div>
+        <div class="form-group">
+          <button class="btn">Register</button>
+        </div>
+      </form>
+
+    </div>
+    <div class="col-xs-offset-1 col-xs-4">
+      <h2>Login</h2>
+      <form class="form" action="/login" method="post">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input class="form-control" type="text" name="email" value="">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input class="form-control" type="text" name="password" value="">
+        </div>
+        <div class="form-group">
+          <button class="btn">Login</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

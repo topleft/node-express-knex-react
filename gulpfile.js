@@ -9,7 +9,7 @@ const nodemon = require('gulp-nodemon');
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 const server = require('tiny-lr')();
-
+const toggleNotify = false;
 // *** config *** //
 
 const paths = {

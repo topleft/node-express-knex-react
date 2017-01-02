@@ -6,10 +6,11 @@
   const path = require('path');
   const cookieParser = require('cookie-parser');
   const bodyParser = require('body-parser');
-  const session = require('express-session');
+  const session = require('cookie-session');
   const flash = require('connect-flash');
   const morgan = require('morgan');
   const nunjucks = require('nunjucks');
+  const passport = require('passport');
 
   // *** view folders *** //
   const viewFolders = [
@@ -33,14 +34,18 @@
       app.use(morgan('dev'));
     }
     app.use(cookieParser());
+    app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: false }));
-    // // uncomment if using express-session
-    // app.use(session({
-    //   secret: process.env.SECRET_KEY,
-    //   resave: false,
-    //   saveUninitialized: true
-    // }));
+    app.use(session({
+      secret: process.env.SECRET,
+      name: 'pop rocks',
+      maxage: 360000
+    }));
+    app.use(passport.initialize());
+    app.use(passport.session());
+
+    require('../helpers/passport')(passport);
+
     app.use(flash());
     app.use(express.static(path.join(__dirname, '..', '..', 'client')));
 

@@ -10,16 +10,16 @@
       <h2>Register</h2>
       <form class="form" action="/register" method="post">
         <div class="form-group">
-          <label for="email">Email</label>
-          <input class="form-control" type="text" name="email" value="">
+          <label for="username">Username</label>
+          <input class="form-control" type="text" name="user[username]" value="">
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input class="form-control" type="text" name="password" value="">
+          <input class="form-control" type="text" name="user[password]" value="">
         </div>
         <div class="form-group">
           <label for="password_confirm">Confirm Password</label>
-          <input class="form-control" type="text" name="password_confirm" value="">
+          <input class="form-control" type="text" name="user[password_confirm]" value="">
         </div>
         <div class="form-group">
           <button class="btn">Register</button>
@@ -32,11 +32,11 @@
       <form class="form" action="/login" method="post">
         <div class="form-group">
           <label for="email">Email</label>
-          <input class="form-control" type="text" name="email" value="">
+          <input class="form-control" type="text" name="user[username]" value="">
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input class="form-control" type="text" name="password" value="">
+          <input class="form-control" type="text" name="user[password]" value="">
         </div>
         <div class="form-group">
           <button class="btn">Login</button>

@@ -34,11 +34,11 @@
       app.use(morgan('dev'));
     }
     app.use(cookieParser());
-    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.urlencoded({ extended: true}));
     app.use(bodyParser.json());
     app.use(session({
       secret: process.env.SECRET,
-      name: 'pop rocks',
+      name: 'boiler',
       maxage: 360000
     }));
     app.use(passport.initialize());

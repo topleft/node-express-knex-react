@@ -13,10 +13,10 @@ module.exports = (passport) => {
       .then((user) => {
         console.log(user);
         if (!user) {
-          return done(null, false, req.flash('loginMessage','Incorrect username.'));
+          return done(null, false, {message: 'Incorrect username or password.'});
         }
         if (!passwordHelpers.comparePass(password, user.password)) {
-          return done(null, false, req.flash('loginMessage', 'Incorrect password.'));
+          return done(null, false, {message: 'Incorrect username or password.'});
         }
         else {
           return done(null, user);

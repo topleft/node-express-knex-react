@@ -5,22 +5,11 @@ const passwordHelpers = require('../helpers/password');
 const knex = require('../db/connection');
 const passport = require('passport');
 
-
-router.get('/spacegoat', function (req, res, next) {
-  console.log('here?');
-  return res.send({message: 'Welcome to Space Goat!!!'})
-});
-
-router.get('/loginFailed', function (req, res, next) {
-  return res.send({status: 401, message: 'Authentication failed.'})
-});
-
 router.post('/register', authHelpers.preventLoginSignup, (req, res, next)  => {
   passwordHelpers.createUser(req)
     .then((user) => {
       req.login(user[0], (err)  => {
         if (err) {
-          console.log(err);
           return next(err);
         }
         return res.json({status: 200, message: `Success, ${user[0].username} is now registered`});
@@ -35,23 +24,29 @@ router.post('/register', authHelpers.preventLoginSignup, (req, res, next)  => {
     });
 });
 
-// authenticate users when logging in - no need for req,res passport does this for us
+// authenticate users when logging in
+// no need for req,res passport does this for us
 router.post('/login', passport.authenticate('local', {
     failureRedirect: '/auth/loginFailed'
   }), (req, res) => {
-    let user = Object.assign({}, {id: req.user.id, username: req.user.username})
-    res.json({status: 200, message: 'success', user: user})
+    let user = Object.assign({}, {id: req.user.id, username: req.user.username});
+    res.json({status: 200, message: 'success', user: user});
   });
 
 router.get('/logout', authHelpers.checkAuthentication, (req,res) => {
-  // req.logout added by passport - delete the user id/session
+  // req.logout added by passport - deletes the user from the session cookie
   req.logout();
-  res.redirect('/');
+  res.json({status: 200, message: 'Logout succesful.'});
 });
 
+// ** helper routes ** //
+
 router.get('/current_user', authHelpers.checkAuthentication, (req,res) => {
-  //
-  res.json(req.user)
+  res.json(req.user);
+});
+
+router.get('/loginFailed', function (req, res, next) {
+  return res.json({status: 401, message: 'Authentication failed.'});
 });
 
 module.exports = router;

@@ -11,15 +11,13 @@ module.exports = (passport) => {
   (req, username, password, done) => {
     knex('users').where({ username: username }).first()
       .then((user) => {
-        console.log(user);
         if (!user) {
           return done(null, false, {message: 'Incorrect username or password.'});
         }
         if (!passwordHelpers.comparePass(password, user.password)) {
           return done(null, false, {message: 'Incorrect username or password.'});
-        }
-        else {
-          return done(null, user);
+        } else {
+          return done(null, user); // success
         }
       })
       .catch((err) => {

@@ -8,7 +8,8 @@
     const routes = require('../routes/routes');
 
     // *** register routes *** //
-    app.use('/api/', routes.index);
+
+    app.use('/', routes.admin);
     app.use('/auth/', routes.auth);
 
   };

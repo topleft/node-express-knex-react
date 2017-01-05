@@ -36,13 +36,11 @@ Checkout it out:
 $ brew services list
 ```
 
-To shut it down:
+Dont do it now, but just so you know...to shut it down:
 
 ```sh
 $ brew services stop postgresql
 ```
-
-...but lets keep it running.
 
 Using the postgreSQL CLI tools, create a database locally:
 
@@ -50,9 +48,11 @@ Using the postgreSQL CLI tools, create a database locally:
 $ createdb boiler
 ```
 
-If you want to change the DB name, update the variable `databaseName` in the *knexfile.js*.
+If you want a different DB name, update the variable `databaseName` in the *knexfile.js*.
 
-!!!!!!!! add link to downloading postgress and CLI tools
+Also there is a handy database browser called (Postico)[https://eggerapps.at/postico/].
+
+Now install dependencies:
 
 ```sh
 $ npm install
@@ -69,3 +69,5 @@ Then fire up the app:
 ```sh
 $ gulp
 ```
+
+This app runs on port 3001. To change that go into _src/server/server.js_

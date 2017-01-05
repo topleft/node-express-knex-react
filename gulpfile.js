@@ -9,7 +9,6 @@ const nodemon = require('gulp-nodemon');
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 const server = require('tiny-lr')();
-const toggleNotify = false;
 // *** config *** //
 
 const paths = {
@@ -69,6 +68,7 @@ gulp.task('jscs', () => {
   return gulp.src(paths.scripts)
     .pipe(plumber())
     .pipe(jscs())
+    .pipe(plumber())
     .pipe(jscs.reporter())
     .pipe(jscs.reporter('fail'))
     .pipe(notify({
